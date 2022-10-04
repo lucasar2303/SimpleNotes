@@ -13,4 +13,10 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
     </style>
+
+    <style name="Theme.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/preto1</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_bg</item>
+        <item name="postSplashScreenTheme">@style/Theme.SimpleNotes</item>
+    </style>
 </resources>
