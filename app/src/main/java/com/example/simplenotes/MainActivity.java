@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.btnFilter.setOnClickListener(view -> showDialogFilter());
         binding.btnSearch.setOnClickListener(view -> newActivty(SearchActivity.class));
+        binding.btnAdd.setOnClickListener(view -> newActivty(AddActivity.class));
     }
 
     private void showDialogFilter(){
