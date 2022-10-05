@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Resources;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -30,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         binding.btnFilter.setOnClickListener(view -> showDialogFilter());
+        binding.btnSearch.setOnClickListener(view -> newActivty(SearchActivity.class));
     }
 
     private void showDialogFilter(){
@@ -83,5 +85,10 @@ public class MainActivity extends AppCompatActivity {
 
     private void selecFilter(int i){
         filterSup = i;
+    }
+
+    private void newActivty(Class c ){
+        Intent intent = new Intent(getApplicationContext(), c);
+        startActivity(intent);
     }
 }
