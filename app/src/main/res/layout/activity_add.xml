@@ -42,7 +42,7 @@
         app:srcCompat="@drawable/ic_fontup" />
 
     <EditText
-        android:id="@+id/etSearch"
+        android:id="@+id/etTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/bg_note"
@@ -66,7 +66,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/etText"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
@@ -77,7 +77,8 @@
         android:inputType="textMultiLine"
         android:textColor="@color/white"
         android:textColorHint="@color/grayText"
-        android:textSize="20dp"
+        android:textSize="22sp"
+        android:text="Olá"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -103,6 +104,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextMultiLine" />
+        app:layout_constraintTop_toBottomOf="@+id/etText" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

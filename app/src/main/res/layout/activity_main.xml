@@ -32,7 +32,7 @@
         app:srcCompat="@drawable/ic_filter" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerNotes"
+        android:id="@+id/recyclerNotes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
@@ -64,7 +64,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RecyclerNotes">
+        app:layout_constraintTop_toBottomOf="@+id/recyclerNotes">
 
         <ImageButton
             android:id="@+id/btnAdd"

@@ -4,7 +4,10 @@ import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Resources;
@@ -16,12 +19,23 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.simplenotes.adapter.NoteAdapter;
 import com.example.simplenotes.databinding.ActivityMainBinding;
+import com.example.simplenotes.helper.Dbhelper;
+import com.example.simplenotes.helper.NoteDAO;
+import com.example.simplenotes.model.Note;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
     private int filterSup;
+
+    private RecyclerView recyclerView;
+    private NoteAdapter noteAdapter;
+    private List<Note> listNotes = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +44,33 @@ public class MainActivity extends AppCompatActivity {
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        recyclerView = binding.recyclerNotes;
         binding.btnFilter.setOnClickListener(view -> showDialogFilter());
         binding.btnSearch.setOnClickListener(view -> newActivty(SearchActivity.class));
         binding.btnAdd.setOnClickListener(view -> newActivty(AddActivity.class));
+    }
+
+    @Override
+    protected void onStart() {
+        setlistNotes();
+        super.onStart();
+    }
+
+    public void setlistNotes(){
+        //Listar tarefas
+        NoteDAO noteDAO = new NoteDAO(getApplicationContext());
+        listNotes = noteDAO.list();
+
+
+
+        //Configurar adapter
+        noteAdapter = new NoteAdapter(listNotes);
+
+        //recycler
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
+        recyclerView.setLayoutManager(layoutManager);
+        recyclerView.setHasFixedSize(true);
+        recyclerView.setAdapter(noteAdapter);
     }
 
     private void showDialogFilter(){

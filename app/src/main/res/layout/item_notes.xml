@@ -49,7 +49,7 @@
 
     <ImageView
         android:visibility="visible"
-        android:id="@+id/imageView"
+        android:id="@+id/imgLock"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="15dp"
