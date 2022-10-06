@@ -9,4 +9,5 @@ public interface INoteDAO {
     public boolean update(Note note);
     public boolean delete(Note note);
     public List<Note> list(int filter, String category, Boolean categoryFilter);
+    public List<Note> listName(String nameSearch);
 }

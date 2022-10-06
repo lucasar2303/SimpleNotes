@@ -108,4 +108,36 @@ public class NoteDAO implements INoteDAO{
         return notes;
 
     }
+
+    public List<Note> listName(String nameSearch) {
+        List<Note> notes = new ArrayList<>();
+        String sql = "";
+
+        if (!nameSearch.equals("")){
+            sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE name LIKE '%"+ nameSearch +"%'  ORDER BY name ASC ;";
+        }else{
+            sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE 1=2 ORDER BY name ASC ;";
+        }
+
+        Cursor c = read.rawQuery(sql, null);
+        while (c.moveToNext()){
+            Note note = new Note();
+
+            @SuppressLint("Range") Long id = c.getLong( c.getColumnIndex("id") );
+            @SuppressLint("Range") String name = c.getString( c.getColumnIndex("name") );
+            @SuppressLint("Range") String datecreate = c.getString( c.getColumnIndex("datecreate") );
+            @SuppressLint("Range") String password = c.getString( c.getColumnIndex("password") );
+            @SuppressLint("Range") String category = c.getString( c.getColumnIndex("category") );
+
+            note.setId(id);
+            note.setName(name);
+            note.setDatecreate(datecreate);
+            note.setCategory(category);
+            note.setPassword(password);
+
+            notes.add(note);
+        }
+        return notes;
+
+    }
 }

@@ -25,6 +25,7 @@
         android:layout_height="wrap_content"
         android:background="@color/blackBg"
         android:padding="20dp"
+        android:visibility="gone"
         app:layout_constraintBottom_toTopOf="@+id/guideline4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -56,7 +57,7 @@
         app:layout_constraintGuide_percent="0.1" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/RecyclerNotes"
+        android:id="@+id/recyclerNotes"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginHorizontal="20dp"
