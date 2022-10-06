@@ -48,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         binding.btnFilter.setOnClickListener(view -> showDialogFilter());
         binding.btnSearch.setOnClickListener(view -> newActivty(SearchActivity.class));
         binding.btnAdd.setOnClickListener(view -> newActivty(AddActivity.class));
+        binding.btnCategory.setOnClickListener(view -> newActivty(CategoryActivity.class));
     }
 
     @Override
@@ -121,10 +122,6 @@ public class MainActivity extends AppCompatActivity {
 
 
         alertDialog.show();
-    }
-
-    private void selecFilter(int i){
-        filterSup = i;
     }
 
     private void newActivty(Class c ){
