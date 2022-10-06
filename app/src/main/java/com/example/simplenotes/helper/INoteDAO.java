@@ -8,5 +8,5 @@ public interface INoteDAO {
     public boolean save(Note note);
     public boolean update(Note note);
     public boolean delete(Note note);
-    public List<Note> list();
+    public List<Note> list(int filter, String category, Boolean categoryFilter);
 }

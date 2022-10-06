@@ -28,17 +28,16 @@ public class AddActivity extends AppCompatActivity {
         binding = ActivityAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        binding.tvSave.setOnClickListener(view -> saveNote());
+        binding.tvSave.setOnClickListener(view -> checkfields());
         binding.btnDownFont.setOnClickListener(view -> fontSize(1));
         binding.btnUpFont.setOnClickListener(view -> fontSize(2));
     }
 
     private void saveNote(){
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date date = new Date();
         String dateString = dateFormat.format(date);
         Toast.makeText(this, dateString, Toast.LENGTH_SHORT).show();
-
 
         NoteDAO noteDAO = new NoteDAO(getApplicationContext());
         Note note = new Note();
@@ -50,7 +49,18 @@ public class AddActivity extends AppCompatActivity {
 
         noteDAO.save(note);
 
+        finish();
     }
+
+    private void checkfields(){
+        String title = binding.etTitle.getText().toString();
+        if (!title.equals("")){
+            saveNote();
+        }else{
+            Toast.makeText(this, "Digite um título", Toast.LENGTH_SHORT).show();
+        }
+
+    };
 
     private void fontSize(int i){
         if (i==1){

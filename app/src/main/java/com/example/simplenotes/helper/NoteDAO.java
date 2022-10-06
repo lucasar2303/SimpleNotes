@@ -56,10 +56,37 @@ public class NoteDAO implements INoteDAO{
     }
 
     @Override
-    public List<Note> list() {
+    public List<Note> list(int filter, String categoryText, Boolean categoryFilter) {
         List<Note> notes = new ArrayList<>();
+        String sql = "";
 
-        String sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " ;";
+        if (categoryFilter){
+            switch (filter){
+                case 1:
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = "+categoryText+" ORDER BY name ASC ;";
+                    break;
+                case 2:
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = "+categoryText+" ORDER BY datecreate DESC ;";
+                    break;
+                case 3:
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = "+categoryText+" ORDER BY datemodify DESC ;";
+                    break;
+            }
+        }else{
+            switch (filter){
+                case 1:
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE 1=1 ORDER BY name ASC ;";
+                    break;
+                case 2:
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE 1=1 ORDER BY datecreate DESC ;";
+                    break;
+                case 3:
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE 1=1 ORDER BY datemodify DESC ;";
+                    break;
+            }
+        }
+
+
         Cursor c = read.rawQuery(sql, null);
         while (c.moveToNext()){
             Note note = new Note();

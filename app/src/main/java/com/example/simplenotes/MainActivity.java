@@ -31,7 +31,7 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private ActivityMainBinding binding;
-    private int filterSup;
+    private int filterSup=1;
 
     private RecyclerView recyclerView;
     private NoteAdapter noteAdapter;
@@ -59,9 +59,7 @@ public class MainActivity extends AppCompatActivity {
     public void setlistNotes(){
         //Listar tarefas
         NoteDAO noteDAO = new NoteDAO(getApplicationContext());
-        listNotes = noteDAO.list();
-
-
+        listNotes = noteDAO.list(filterSup, "", false);
 
         //Configurar adapter
         noteAdapter = new NoteAdapter(listNotes);
@@ -103,17 +101,20 @@ public class MainActivity extends AppCompatActivity {
 
 
         view.findViewById(R.id.tvTitle).setOnClickListener(view12 -> {
-            selecFilter(1);
+            filterSup = 1;
+            setlistNotes();
             alertDialog.dismiss();
         });
 
         view.findViewById(R.id.tvCreate).setOnClickListener(view1 -> {
-            selecFilter(2);
+            filterSup = 2;
+            setlistNotes();
             alertDialog.dismiss();
         });
 
         view.findViewById(R.id.tvModify).setOnClickListener(view13 -> {
-            selecFilter(3);
+            filterSup = 3;
+            setlistNotes();
             alertDialog.dismiss();
         });
 
