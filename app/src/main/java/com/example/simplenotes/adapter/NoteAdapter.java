@@ -43,8 +43,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
         if (password==null){
             holder.imgLock.setVisibility(View.GONE);
         }else{
-
-            holder.imgLock.setVisibility(View.VISIBLE);
+            if (!password.equals("")){
+                holder.imgLock.setVisibility(View.VISIBLE);
+            }else{
+                holder.imgLock.setVisibility(View.GONE);
+            }
         }
 
     }

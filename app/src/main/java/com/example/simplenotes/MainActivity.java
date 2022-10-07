@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
+import android.widget.AdapterView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,6 +24,7 @@ import com.example.simplenotes.adapter.NoteAdapter;
 import com.example.simplenotes.databinding.ActivityMainBinding;
 import com.example.simplenotes.helper.Dbhelper;
 import com.example.simplenotes.helper.NoteDAO;
+import com.example.simplenotes.helper.RecyclerItemClickListener;
 import com.example.simplenotes.model.Note;
 
 import java.util.ArrayList;
@@ -45,6 +47,34 @@ public class MainActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         recyclerView = binding.recyclerNotes;
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Note noteSelec = listNotes.get(position);
+
+                                Intent intent = new Intent(MainActivity.this, NoteActivity.class);
+                                intent.putExtra("noteselec", noteSelec);
+
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
+
         binding.btnFilter.setOnClickListener(view -> showDialogFilter());
         binding.btnSearch.setOnClickListener(view -> newActivty(SearchActivity.class));
         binding.btnAdd.setOnClickListener(view -> newActivty(AddActivity.class));

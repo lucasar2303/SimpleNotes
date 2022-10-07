@@ -34,10 +34,10 @@ public class NoteDAO implements INoteDAO{
         cv.put("font", note.getFont());
         try {
 
-            Log.e("INFO", "ERRO AO SALVAR TAREFEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE");
+            Log.e("INFO", "SUCESSO AO SALVAR NOTA");
             write.insert(Dbhelper.TABELA_NOTES, "password, category", cv );
         }catch (Exception e){
-            Log.e("INFO", "ERRO AO SALVAR TAREFAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + e.getMessage());
+            Log.e("INFO", "ERRO AO SALVAR NOTA" + e.getMessage());
             return false;
         }
 
@@ -47,7 +47,27 @@ public class NoteDAO implements INoteDAO{
 
     @Override
     public boolean update(Note note) {
-        return false;
+
+        ContentValues cv = new ContentValues();
+        cv.put("name", note.getName());
+        cv.put("text", note.getText());
+        cv.put("datecreate", note.getDatecreate());
+        cv.put("datemodify", note.getDatemodify());
+        cv.put("font", note.getFont());
+        cv.put("category", note.getCategory());
+        cv.put("password", note.getPassword());
+
+        try {
+            String[] args = {note.getId().toString()};
+            write.update(Dbhelper.TABELA_NOTES, cv, "id=?", args);
+            Log.e("INFO", "SUCESSO AO ATUALIZAR NOTA");
+        }catch (Exception e){
+            Log.e("INFO", "ERRO AO ATUALIZAR NOTA" + e.getMessage());
+            return false;
+        }
+
+
+        return true;
     }
 
     @Override
@@ -94,16 +114,23 @@ public class NoteDAO implements INoteDAO{
             @SuppressLint("Range") Long id = c.getLong( c.getColumnIndex("id") );
             @SuppressLint("Range") String name = c.getString( c.getColumnIndex("name") );
             @SuppressLint("Range") String datecreate = c.getString( c.getColumnIndex("datecreate") );
+            @SuppressLint("Range") String datemodify = c.getString( c.getColumnIndex("datemodify") );
             @SuppressLint("Range") String password = c.getString( c.getColumnIndex("password") );
             @SuppressLint("Range") String category = c.getString( c.getColumnIndex("category") );
+            @SuppressLint("Range") String text = c.getString( c.getColumnIndex("text") );
+            @SuppressLint("Range") int font = c.getInt( c.getColumnIndex("font") );
 
             note.setId(id);
             note.setName(name);
             note.setDatecreate(datecreate);
             note.setCategory(category);
             note.setPassword(password);
+            note.setText(text);
+            note.setDatemodify(datemodify);
+            note.setFont(font);
 
             notes.add(note);
+
         }
         return notes;
 

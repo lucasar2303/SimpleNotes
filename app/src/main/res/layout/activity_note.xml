@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".NoteActivity"
+    android:background="@color/blackBg">
+
+    <ImageButton
+        android:id="@+id/btnBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/blackBg"
+        android:padding="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_back" />
+
+    <ImageButton
+        android:id="@+id/btnLock"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/blackBg"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/btnDownFont"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_lock"
+        app:tint="@color/grayText" />
+
+    <ImageButton
+        android:id="@+id/btnDownFont"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/blackBg"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/btnUpFont"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_fontdown" />
+
+    <ImageButton
+        android:id="@+id/btnUpFont"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/blackBg"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toStartOf="@+id/btnDelete"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.521"
+        app:srcCompat="@drawable/ic_fontup" />
+
+    <ImageButton
+        android:id="@+id/btnDelete"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@color/blackBg"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_trash" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Categoria"
+        android:textColor="@color/orange"
+        android:fontFamily="@font/inder"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline4"
+        app:layout_constraintStart_toEndOf="@+id/btnBack"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/etTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:background="@drawable/bg_note"
+        android:backgroundTint="@color/blackBg"
+        android:ems="10"
+        android:hint="Título"
+        android:inputType="textPersonName"
+        android:maxLength="20"
+        android:paddingVertical="15dp"
+        android:textSize="28dp"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grayText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/guideline4" />
+
+
+    <EditText
+        android:id="@+id/etText"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginHorizontal="20dp"
+        android:ems="10"
+        android:fontFamily="@font/inder"
+        android:gravity="start|top"
+        android:hint="Digite suas anotações"
+        android:inputType="textMultiLine"
+        android:textColor="@color/white"
+        android:textColorHint="@color/grayText"
+        android:textSize="22sp"
+        app:layout_constraintBottom_toTopOf="@+id/guideline5"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etTitle" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.93" />
+
+    <TextView
+        android:id="@+id/tvSave"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:text="Salvar"
+        android:gravity="center"
+        android:textColor="@color/orange"
+        android:fontFamily="@font/inder"
+        android:textSize="20dp"
+        android:background="@color/blackDialog"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/etText" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/layoutPassword"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/blackBg"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/etPassword"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:layout_marginHorizontal="80dp"
+            android:ems="10"
+            android:fontFamily="@font/inder"
+            android:hint="Digite sua senha"
+            android:inputType="numberPassword"
+            android:maxLength="4"
+            android:textSize="28dp"
+            android:textAlignment="center"
+            android:textColor="@color/orange"
+            android:textColorHint="@color/grayText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/okPassword"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Ok"
+            android:paddingVertical="10dp"
+            android:paddingHorizontal="50dp"
+            android:fontFamily="@font/inder"
+            android:textColor="@color/orange"
+            android:textSize="24dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

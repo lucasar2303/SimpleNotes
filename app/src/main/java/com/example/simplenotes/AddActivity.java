@@ -44,7 +44,6 @@ public class AddActivity extends AppCompatActivity {
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
         Date date = new Date();
         String dateString = dateFormat.format(date);
-        Toast.makeText(this, dateString, Toast.LENGTH_SHORT).show();
 
         NoteDAO noteDAO = new NoteDAO(getApplicationContext());
         Note note = new Note();
