@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -38,6 +39,11 @@ public class NoteActivity extends AppCompatActivity {
         binding = ActivityNoteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.btnBack.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent);
+            finish();
+        });
 
         note = (Note) getIntent().getSerializableExtra("noteselec");
         binding.etTitle.setText(note.getName());
@@ -63,7 +69,6 @@ public class NoteActivity extends AppCompatActivity {
             }
         }
 
-        Toast.makeText(this, password, Toast.LENGTH_SHORT).show();
 
         binding.okPassword.setOnClickListener(view -> {
             binding.etPassword.getText().toString();

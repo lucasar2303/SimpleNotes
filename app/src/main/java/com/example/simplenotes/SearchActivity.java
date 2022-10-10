@@ -10,11 +10,13 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.example.simplenotes.adapter.NoteAdapter;
 import com.example.simplenotes.databinding.ActivitySearchBinding;
 import com.example.simplenotes.helper.NoteDAO;
+import com.example.simplenotes.helper.RecyclerItemClickListener;
 import com.example.simplenotes.model.Note;
 
 import java.util.ArrayList;
@@ -36,6 +38,33 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         recyclerView = binding.recyclerNotes;
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Note noteSelec = listNotes.get(position);
+
+                                Intent intent = new Intent(SearchActivity.this, NoteActivity.class);
+                                intent.putExtra("noteselec", noteSelec);
+
+                                startActivity(intent);
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
 
         binding.btnBack.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
