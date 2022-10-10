@@ -72,7 +72,18 @@ public class NoteDAO implements INoteDAO{
 
     @Override
     public boolean delete(Note note) {
-        return false;
+
+
+        try {
+            String[] args = {note.getId().toString()};
+            write.delete(Dbhelper.TABELA_NOTES, "id=?", args);
+            Log.e("INFO", "SUCESSO AO DELETAR NOTA");
+        }catch (Exception e){
+            Log.e("INFO", "ERRO AO DELETAR NOTA" + e.getMessage());
+            return false;
+        }
+
+        return true;
     }
 
     @Override

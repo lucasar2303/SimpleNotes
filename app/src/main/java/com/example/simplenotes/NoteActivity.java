@@ -57,11 +57,11 @@ public class NoteActivity extends AppCompatActivity {
         });
 
         binding.btnDelete.setOnClickListener(view -> {
-
+            showDialogDelete();
         });
 
         password = note.getPassword();
-        binding.btnLock.setOnClickListener(view -> {showDialogFilter();});
+        binding.btnLock.setOnClickListener(view -> {showDialogPassword();});
         if (password != null){
             if (!password.equals("")) {
                 binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
@@ -104,7 +104,7 @@ public class NoteActivity extends AppCompatActivity {
     }
 
 
-    private void showDialogFilter(){
+    private void showDialogPassword(){
         AlertDialog.Builder builder = new AlertDialog.Builder(NoteActivity.this, R.style.AlertDialogTheme);
         View view = LayoutInflater.from(NoteActivity.this).inflate(R.layout.dialog_password, (LinearLayout)findViewById(R.id.dialogLinearLayout));
         builder.setView(view);
@@ -114,6 +114,7 @@ public class NoteActivity extends AppCompatActivity {
         view.findViewById(R.id.btnDelete).setOnClickListener(view12 -> {
             password = "";
             updateNote();
+            binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#4B4B4B")));
             alertDialog.dismiss();
         });
 
@@ -155,6 +156,30 @@ public class NoteActivity extends AppCompatActivity {
     }
 
     private void deleteNote(){
+        NoteDAO noteDAO = new NoteDAO(getApplicationContext());
+        noteDAO.delete(note);
+    }
 
+    private void showDialogDelete(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(NoteActivity.this, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(NoteActivity.this).inflate(R.layout.dialog_delete, (LinearLayout)findViewById(R.id.dialogLinearLayout));
+        builder.setView(view);
+
+        final AlertDialog alertDialog = builder.create();
+
+        TextView title = (TextView) view.findViewById(R.id.tvNoteName);
+        title.setText(note.getName());
+
+        view.findViewById(R.id.btnCancel).setOnClickListener(view12 -> {
+            alertDialog.dismiss();
+        });
+
+        view.findViewById(R.id.btnConfirm).setOnClickListener(view1 -> {
+            deleteNote();
+            alertDialog.dismiss();
+            finish();
+        });
+
+        alertDialog.show();
     }
 }
