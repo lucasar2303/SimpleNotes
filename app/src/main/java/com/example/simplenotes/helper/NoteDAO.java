@@ -106,7 +106,7 @@ public class NoteDAO implements INoteDAO{
         }else{
             switch (filter){
                 case 1:
-                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE 1=1 ORDER BY name ASC ;";
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE 1=1 ORDER BY LOWER(name) ASC ;";
                     break;
                 case 2:
                     sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE 1=1 ORDER BY datecreate DESC ;";
