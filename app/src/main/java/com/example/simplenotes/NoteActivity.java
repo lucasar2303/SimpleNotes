@@ -42,8 +42,6 @@ public class NoteActivity extends AppCompatActivity {
         initializeComponents();
 
         binding.btnBack.setOnClickListener(view -> {
-            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-            startActivity(intent);
             finish();
         });
 

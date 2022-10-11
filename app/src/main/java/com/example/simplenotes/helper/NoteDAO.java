@@ -94,13 +94,13 @@ public class NoteDAO implements INoteDAO{
         if (categoryFilter){
             switch (filter){
                 case 1:
-                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = "+categoryText+" ORDER BY name ASC ;";
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = '"+categoryText+"' ORDER BY LOWER(name) ASC ;";
                     break;
                 case 2:
-                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = "+categoryText+" ORDER BY datecreate DESC ;";
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = '"+categoryText+"' ORDER BY datecreate DESC ;";
                     break;
                 case 3:
-                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = "+categoryText+" ORDER BY datemodify DESC ;";
+                    sql = "SELECT * FROM " + Dbhelper.TABELA_NOTES + " WHERE category = '"+categoryText+"' ORDER BY datemodify DESC ;";
                     break;
             }
         }else{

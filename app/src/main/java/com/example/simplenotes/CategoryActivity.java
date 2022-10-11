@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -22,6 +23,7 @@ import com.example.simplenotes.adapter.NoteAdapter;
 import com.example.simplenotes.databinding.ActivityCategoryBinding;
 import com.example.simplenotes.helper.CategoryDAO;
 import com.example.simplenotes.helper.NoteDAO;
+import com.example.simplenotes.helper.RecyclerItemClickListener;
 import com.example.simplenotes.model.Category;
 import com.example.simplenotes.model.Note;
 
@@ -46,6 +48,31 @@ public class CategoryActivity extends AppCompatActivity {
         setContentView(binding.getRoot());
 
         recyclerView = binding.recyclerCategory;
+        recyclerView.addOnItemTouchListener(
+                new RecyclerItemClickListener(
+                        getApplicationContext(),
+                        recyclerView,
+                        new RecyclerItemClickListener.OnItemClickListener() {
+                            @Override
+                            public void onItemClick(View view, int position) {
+                                Category category = listCategory.get(position);
+                                selectCategory(category.getName(), category.getId());
+                            }
+
+                            @Override
+                            public void onLongItemClick(View view, int position) {
+
+                            }
+
+                            @Override
+                            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
+                            }
+                        }
+                )
+        );
+
+        binding.tvAll.setOnClickListener(view -> selectCategory("",0));
 
         binding.btnAdd.setOnClickListener(view -> showDialogFilter());
 
@@ -68,8 +95,6 @@ public class CategoryActivity extends AppCompatActivity {
         CategoryDAO categoryDAO = new CategoryDAO(getApplicationContext());
         listCategory = categoryDAO.list();
 
-
-
         //Configurar adapter
         categoryAdapter = new CategoryAdapter(listCategory, getApplicationContext());
 
@@ -87,7 +112,6 @@ public class CategoryActivity extends AppCompatActivity {
         builder.setView(view);
 
         final AlertDialog alertDialog = builder.create();
-
 
             view.findViewById(R.id.btnSave).setOnClickListener(view12 -> {
                 EditText title = (EditText) view.findViewById(R.id.etName);
@@ -113,8 +137,16 @@ public class CategoryActivity extends AppCompatActivity {
                 }
             });
 
-
         alertDialog.show();
+    }
+
+    private void selectCategory(String category, long categoryId){
+
+        Intent intent = new Intent(CategoryActivity.this, MainActivity.class);
+        intent.putExtra("categorySelect", category);
+        intent.putExtra("categoryId", categoryId);
+        startActivity(intent);
+        finish();
     }
 
 }

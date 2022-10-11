@@ -46,12 +46,15 @@ public class CategoryDAO implements ICategoryDAO{
 
     @Override
     public boolean delete(Category category) {
-//        try{
-//            String[] args =
-//        }catch (Exception e){
-//            Log.e("INFO", "Erro ao deletar categoria"+ e.getMessage());
-//            return false
-//        }
+        try {
+            String[] args = {category.getId().toString()};
+            write.delete(Dbhelper.TABELA_CATEGORY, "id=?", args);
+            Log.e("INFO", "SUCESSO AO DELETAR NOTA");
+        }catch (Exception e){
+            Log.e("INFO", "ERRO AO DELETAR NOTA" + e.getMessage());
+            return false;
+        }
+
         return true;
     }
 
