@@ -164,16 +164,23 @@ public class NoteDAO implements INoteDAO{
             @SuppressLint("Range") Long id = c.getLong( c.getColumnIndex("id") );
             @SuppressLint("Range") String name = c.getString( c.getColumnIndex("name") );
             @SuppressLint("Range") String datecreate = c.getString( c.getColumnIndex("datecreate") );
+            @SuppressLint("Range") String datemodify = c.getString( c.getColumnIndex("datemodify") );
             @SuppressLint("Range") String password = c.getString( c.getColumnIndex("password") );
             @SuppressLint("Range") String category = c.getString( c.getColumnIndex("category") );
+            @SuppressLint("Range") String text = c.getString( c.getColumnIndex("text") );
+            @SuppressLint("Range") int font = c.getInt( c.getColumnIndex("font") );
 
             note.setId(id);
             note.setName(name);
             note.setDatecreate(datecreate);
             note.setCategory(category);
             note.setPassword(password);
+            note.setText(text);
+            note.setDatemodify(datemodify);
+            note.setFont(font);
 
             notes.add(note);
+
         }
         return notes;
 

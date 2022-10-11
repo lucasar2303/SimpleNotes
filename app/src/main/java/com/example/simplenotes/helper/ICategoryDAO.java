@@ -10,4 +10,5 @@ public interface ICategoryDAO {
     public boolean update(Category category);
     public boolean delete(Category category);
     public List<Category> list();
+    public List<Category> listName(String nameC);
 }

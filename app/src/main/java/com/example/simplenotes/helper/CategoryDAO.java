@@ -41,7 +41,21 @@ public class CategoryDAO implements ICategoryDAO{
 
     @Override
     public boolean update(Category category) {
-        return false;
+
+        ContentValues cv = new ContentValues();
+        cv.put("name", category.getName());
+
+        try {
+            String[] args = {category.getId().toString()};
+            write.update(Dbhelper.TABELA_CATEGORY, cv, "id=?", args);
+            Log.e("INFO", "SUCESSO AO ATUALIZAR NOTA");
+        }catch (Exception e){
+            Log.e("INFO", "ERRO AO ATUALIZAR NOTA" + e.getMessage());
+            return false;
+        }
+
+
+        return true;
     }
 
     @Override
@@ -62,6 +76,27 @@ public class CategoryDAO implements ICategoryDAO{
     public List<Category> list() {
         List<Category> categories = new ArrayList<>();
         String sql = "SELECT * FROM " + Dbhelper.TABELA_CATEGORY + " WHERE 1=1 ;";
+
+        Cursor c = read.rawQuery(sql, null);
+        while (c.moveToNext()){
+            Category category = new Category();
+
+            @SuppressLint("Range") Long id = c.getLong( c.getColumnIndex("id") );
+            @SuppressLint("Range") String name = c.getString( c.getColumnIndex("name") );
+
+            category.setId(id);
+            category.setName(name);
+
+            categories.add(category);
+
+        }
+        return categories;
+
+    }
+
+    public List<Category> listName(String nameC) {
+        List<Category> categories = new ArrayList<>();
+        String sql = "SELECT * FROM " + Dbhelper.TABELA_CATEGORY + " WHERE name = '"+nameC+"' ORDER BY LOWER(name) ASC ;";
 
         Cursor c = read.rawQuery(sql, null);
         while (c.moveToNext()){

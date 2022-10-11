@@ -17,6 +17,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,9 @@ import com.example.simplenotes.helper.RecyclerItemClickListener;
 import com.example.simplenotes.model.Category;
 import com.example.simplenotes.model.Note;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
@@ -198,7 +201,55 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private void editCategory(){}
+    private void editCategory(){
+        AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(MainActivity.this).inflate(R.layout.dialog_new_category, (LinearLayout)findViewById(R.id.dialogLinearLayout));
+        builder.setView(view);
+
+        final AlertDialog alertDialog = builder.create();
+
+        EditText title = (EditText) view.findViewById(R.id.etName);
+        title.setText(categorySelec);
+        title.requestFocus();
+
+        view.findViewById(R.id.btnSave).setOnClickListener(view12 -> {
+            String nameCategory = title.getText().toString();
+
+            CategoryDAO categoryDAO = new CategoryDAO(getApplicationContext());
+            List<Category> categories = categoryDAO.listName(nameCategory);
+
+            if (categories.size()==0){
+                for (int i=0;i<listNotes.size();i++){
+                    NoteDAO noteDAO = new NoteDAO(getApplicationContext());
+                    Note note = new Note();
+                    note = listNotes.get(i);
+                    note.setCategory(nameCategory);
+
+                    noteDAO.update(note);
+                }
+
+                Category category = new Category();
+                category.setId(categoryId);
+                category.setName(nameCategory);
+                categoryDAO.update(category);
+
+
+                categorySelec = nameCategory;
+                binding.tvCategorySelec.setText(categorySelec);
+                setlistNotes(categorySelec, categorySup);
+
+                Toast.makeText(this, "Categoria atualizada", Toast.LENGTH_SHORT).show();
+
+                alertDialog.dismiss();
+
+            }else{
+                Toast.makeText(this, "Essa categoria ja existe", Toast.LENGTH_SHORT).show();
+            }
+
+        });
+
+        alertDialog.show();
+    }
 
 
 

@@ -47,6 +47,8 @@ public class SearchActivity extends AppCompatActivity {
                             public void onItemClick(View view, int position) {
                                 Note noteSelec = listNotes.get(position);
 
+
+
                                 Intent intent = new Intent(SearchActivity.this, NoteActivity.class);
                                 intent.putExtra("noteselec", noteSelec);
 
