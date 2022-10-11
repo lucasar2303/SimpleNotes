@@ -37,7 +37,11 @@ public class NoteAdapter extends RecyclerView.Adapter<NoteAdapter.MyViewHolder> 
 
         holder.tvName.setText(note.getName());
         holder.tvCategory.setText(note.getCategory());
-        holder.tvDate.setText(note.getDatecreate());
+
+        String[] date = note.getDatecreate().split(" ");
+        String[] date2 = date[0].split("-");
+
+        holder.tvDate.setText(date2[2]+"/"+date2[1]+"/"+date2[0]);
 
         String password = note.getPassword();
         if (password==null){

@@ -90,7 +90,6 @@ public class CategoryAdapter extends RecyclerView.Adapter<CategoryAdapter.MyView
             super(itemView);
 
             tvName = itemView.findViewById(R.id.tvNameCategory);
-            imgDelete = itemView.findViewById(R.id.imgDelete);
 
         }
     }

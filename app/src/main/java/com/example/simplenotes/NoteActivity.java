@@ -39,36 +39,28 @@ public class NoteActivity extends AppCompatActivity {
         binding = ActivityNoteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        initializeComponents();
+
         binding.btnBack.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent);
             finish();
         });
 
-        note = (Note) getIntent().getSerializableExtra("noteselec");
-        binding.etTitle.setText(note.getName());
-        binding.etText.setText(note.getText());
-        fontsize = note.getFont();
-        binding.etText.setTextSize(fontsize);
+        binding.tvCategorySelec.setOnClickListener(view -> categorySelec());
 
         binding.tvSave.setOnClickListener(view -> {
             updateNote();
             finish();
         });
 
-        binding.btnDelete.setOnClickListener(view -> {
-            showDialogDelete();
-        });
+        binding.btnDelete.setOnClickListener(view -> showDialogDelete());
 
-        password = note.getPassword();
+        binding.btnDownFont.setOnClickListener(view -> fontSize(1));
+        binding.btnUpFont.setOnClickListener(view -> fontSize(2));
+
+
         binding.btnLock.setOnClickListener(view -> {showDialogPassword();});
-        if (password != null){
-            if (!password.equals("")) {
-                binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
-                binding.layoutPassword.setVisibility(View.VISIBLE);
-            }
-        }
-
 
         binding.okPassword.setOnClickListener(view -> {
             binding.etPassword.getText().toString();
@@ -79,8 +71,7 @@ public class NoteActivity extends AppCompatActivity {
             }
         });
 
-        binding.btnDownFont.setOnClickListener(view -> fontSize(1));
-        binding.btnUpFont.setOnClickListener(view -> fontSize(2));
+
     }
 
     private void fontSize(int i){
@@ -181,5 +172,54 @@ public class NoteActivity extends AppCompatActivity {
         });
 
         alertDialog.show();
+    }
+
+    private void categorySelec(){
+        Intent intent = new Intent(NoteActivity.this, CategorySelectActivity.class);
+        intent.putExtra("noteselec", note);
+
+        startActivity(intent);
+        finish();
+
+    }
+
+    private void initializeComponents(){
+        note = (Note) getIntent().getSerializableExtra("noteselec");
+        binding.etTitle.setText(note.getName());
+        binding.etText.setText(note.getText());
+        fontsize = note.getFont();
+        binding.etText.setTextSize(fontsize);
+        password = note.getPassword();
+        category = note.getCategory();
+
+        if (note.getCategory() != null){
+            if (!note.getCategory().equals("")) {
+                binding.tvCategorySelec.setText(note.getCategory());
+            }
+        }
+        Boolean categoryActivity = (Boolean) getIntent().getSerializableExtra("categoryActivity");
+
+        if (categoryActivity==null){
+            categoryActivity=false;
+        }
+
+        if (categoryActivity){
+            if (password != null){
+                if (!password.equals("")) {
+                    binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
+                }
+            }
+        }else{
+            if (password != null){
+                if (!password.equals("")) {
+                    binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
+                    binding.layoutPassword.setVisibility(View.VISIBLE);
+                }
+            }
+        }
+
+
+
+
     }
 }
