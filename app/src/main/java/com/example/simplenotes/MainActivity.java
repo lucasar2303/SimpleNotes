@@ -235,12 +235,15 @@ public class MainActivity extends AppCompatActivity {
 
 
                 categorySelec = nameCategory;
-                binding.tvCategorySelec.setText(categorySelec);
                 setlistNotes(categorySelec, categorySup);
 
                 Toast.makeText(this, "Categoria atualizada", Toast.LENGTH_SHORT).show();
 
                 alertDialog.dismiss();
+
+                finish();
+                newActivty(CategoryActivity.class);
+
 
             }else{
                 Toast.makeText(this, "Essa categoria ja existe", Toast.LENGTH_SHORT).show();

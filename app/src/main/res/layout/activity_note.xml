@@ -114,6 +114,7 @@
         android:textColor="@color/white"
         android:textColorHint="@color/grayText"
         android:textSize="22sp"
+        android:background="@color/blackBg"
         app:layout_constraintBottom_toTopOf="@+id/guideline5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -124,7 +125,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.93" />
+        app:layout_constraintGuide_percent="0.9" />
 
     <TextView
         android:id="@+id/tvSave"

@@ -18,12 +18,14 @@
             android:exported="false" />
         <activity
             android:name=".NoteActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".CategoryActivity"
             android:exported="false" />
         <activity
             android:name=".AddActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".SearchActivity"
