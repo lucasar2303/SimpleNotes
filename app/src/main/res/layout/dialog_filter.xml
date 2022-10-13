@@ -28,10 +28,9 @@
         android:text="Título"
         android:fontFamily="@font/inder"
         android:textColor="@color/white"
-        android:drawableEnd="@drawable/bg_note"
         android:drawablePadding="20dp"
         android:textSize="20dp"
-        android:background="@color/blackNote"/>
+        android:background="@drawable/btn2"/>
 
     <TextView
         android:id="@+id/tvCreate"
@@ -42,10 +41,9 @@
         android:text="Data de criação"
         android:fontFamily="@font/inder"
         android:textColor="@color/white"
-        android:drawableEnd="@drawable/bg_note"
         android:drawablePadding="20dp"
         android:textSize="20dp"
-        android:background="@color/blackNote"/>
+        android:background="@drawable/btn2"/>
 
     <TextView
         android:id="@+id/tvModify"
@@ -56,10 +54,9 @@
         android:text="Data de modificação"
         android:fontFamily="@font/inder"
         android:textColor="@color/white"
-        android:drawableEnd="@drawable/bg_note"
         android:drawablePadding="20dp"
         android:textSize="20dp"
-        android:background="@color/blackNote"/>
+        android:background="@drawable/btn2"/>
 
 
 </LinearLayout>

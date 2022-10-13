@@ -7,11 +7,13 @@ import androidx.core.splashscreen.SplashScreen;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.LinearLayout;
@@ -113,8 +115,14 @@ public class CategoryActivity extends AppCompatActivity {
 
         final AlertDialog alertDialog = builder.create();
 
+        EditText title = (EditText) view.findViewById(R.id.etName);
+        title.requestFocus();
+        InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+        if (inputMethodManager != null) {
+            inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+        }
+
             view.findViewById(R.id.btnSave).setOnClickListener(view12 -> {
-                EditText title = (EditText) view.findViewById(R.id.etName);
                 String name = title.getText().toString();
 
                 List<Category> categories = new ArrayList<>();

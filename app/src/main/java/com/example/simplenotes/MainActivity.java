@@ -196,6 +196,12 @@ public class MainActivity extends AppCompatActivity {
 
                 binding.btnEdit.setOnClickListener(view -> editCategory());
                 binding.btnDelete.setOnClickListener(view -> deleteCategory());
+
+                binding.btnCategory.setOnClickListener(view -> {
+                    newActivty(CategoryActivity.class);
+                    finish();
+                });
+
             }
         }
 
@@ -264,6 +270,7 @@ public class MainActivity extends AppCompatActivity {
                 category1.setId(categoryId);
                 categoryDAO.delete(category1);
                 finish();
+                Toast.makeText(this, "Categoria excluída", Toast.LENGTH_SHORT).show();
             }else{
                 Toast.makeText(this, "Delete todas as notas antes de excluir a categoria", Toast.LENGTH_SHORT).show();
             }

@@ -5,12 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
 import androidx.core.splashscreen.SplashScreen;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -64,6 +66,8 @@ public class NoteActivity extends AppCompatActivity {
             binding.etPassword.getText().toString();
             if (password.equals(binding.etPassword.getText().toString())){
                 binding.layoutPassword.setVisibility(View.GONE);
+                InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
             }else{
                 Toast.makeText(this, "Senha incorreta", Toast.LENGTH_SHORT).show();
             }
@@ -100,6 +104,9 @@ public class NoteActivity extends AppCompatActivity {
 
         final AlertDialog alertDialog = builder.create();
 
+        EditText etPassword = (EditText) view.findViewById(R.id.etPassword);
+        etPassword.requestFocus();
+
         view.findViewById(R.id.btnDelete).setOnClickListener(view12 -> {
             password = "";
             updateNote();
@@ -109,11 +116,15 @@ public class NoteActivity extends AppCompatActivity {
 
         view.findViewById(R.id.btnSave).setOnClickListener(view1 -> {
 
-            EditText etPassword = (EditText) view.findViewById(R.id.etPassword);
             password = etPassword.getText().toString();
-            updateNote();
-            binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
-            alertDialog.dismiss();
+            if (password.length()==4){
+                updateNote();
+                binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
+                alertDialog.dismiss();
+            }else{
+                Toast.makeText(this, "Mínimo de 4 caracteres", Toast.LENGTH_SHORT).show();
+            }
+
         });
 
         alertDialog.show();
@@ -166,6 +177,7 @@ public class NoteActivity extends AppCompatActivity {
         view.findViewById(R.id.btnConfirm).setOnClickListener(view1 -> {
             deleteNote();
             alertDialog.dismiss();
+            Toast.makeText(this, "Nota excluída", Toast.LENGTH_SHORT).show();
             finish();
         });
 
@@ -192,6 +204,9 @@ public class NoteActivity extends AppCompatActivity {
 
         if (note.getCategory() != null){
             if (!note.getCategory().equals("")) {
+                if (note.getCategory().length()>15){
+
+                }
                 binding.tvCategorySelec.setText(note.getCategory());
             }
         }
@@ -212,6 +227,7 @@ public class NoteActivity extends AppCompatActivity {
                 if (!password.equals("")) {
                     binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
                     binding.layoutPassword.setVisibility(View.VISIBLE);
+                    binding.etPassword.requestFocus();
                 }
             }
         }

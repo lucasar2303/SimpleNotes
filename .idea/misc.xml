@@ -4,6 +4,15 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/bg_note.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn2.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn2_no_press.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn2_press.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn3.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn3_no_press.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn3_press.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn_1.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn_no_press.xml" value="0.3515" />
+        <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/btn_press.xml" value="0.1695" />
         <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/ic_lock.xml" value="0.3515" />
         <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/ic_logo.xml" value="0.3515" />
         <entry key="..\:/Users/Lucas/AndroidStudioProjects/SimpleNotes/app/src/main/res/drawable/ic_logosplash.xml" value="0.3515" />
