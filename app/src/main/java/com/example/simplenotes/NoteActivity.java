@@ -10,6 +10,8 @@ import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
@@ -41,7 +43,7 @@ public class NoteActivity extends AppCompatActivity {
         binding = ActivityNoteBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
-        initializeComponents();
+
 
         binding.btnBack.setOnClickListener(view -> {
             finish();
@@ -63,7 +65,6 @@ public class NoteActivity extends AppCompatActivity {
         binding.btnLock.setOnClickListener(view -> {showDialogPassword();});
 
         binding.okPassword.setOnClickListener(view -> {
-            binding.etPassword.getText().toString();
             if (password.equals(binding.etPassword.getText().toString())){
                 binding.layoutPassword.setVisibility(View.GONE);
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -72,6 +73,8 @@ public class NoteActivity extends AppCompatActivity {
                 Toast.makeText(this, "Senha incorreta", Toast.LENGTH_SHORT).show();
             }
         });
+
+        initializeComponents();
 
 
     }
@@ -107,13 +110,6 @@ public class NoteActivity extends AppCompatActivity {
         EditText etPassword = (EditText) view.findViewById(R.id.etPassword);
         etPassword.requestFocus();
 
-        view.findViewById(R.id.btnDelete).setOnClickListener(view12 -> {
-            password = "";
-            updateNote();
-            binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#4B4B4B")));
-            alertDialog.dismiss();
-        });
-
         view.findViewById(R.id.btnSave).setOnClickListener(view1 -> {
 
             password = etPassword.getText().toString();
@@ -121,13 +117,38 @@ public class NoteActivity extends AppCompatActivity {
                 updateNote();
                 binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
                 alertDialog.dismiss();
+                binding.btnLock.setOnClickListener(view5 -> {showLock();});
             }else{
                 Toast.makeText(this, "Mínimo de 4 caracteres", Toast.LENGTH_SHORT).show();
             }
-
         });
 
         alertDialog.show();
+    }
+
+    private void showLock(){
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(NoteActivity.this, R.style.AlertDialogTheme);
+        View view = LayoutInflater.from(NoteActivity.this).inflate(R.layout.dialog_lock, (LinearLayout)findViewById(R.id.dialogLinearLayout));
+        builder.setView(view);
+
+        final AlertDialog alertDialog = builder.create();
+
+        view.findViewById(R.id.btnDelete).setOnClickListener(view12 -> {
+            password = "";
+            updateNote();
+            binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#4B4B4B")));
+            alertDialog.dismiss();
+            binding.btnLock.setOnClickListener(view5 -> {showDialogPassword();});
+        });
+
+        view.findViewById(R.id.btnEdit).setOnClickListener(view1 -> {
+            alertDialog.dismiss();
+            showDialogPassword();
+        });
+
+        alertDialog.show();
+
     }
 
     private void updateNote(){
@@ -228,6 +249,31 @@ public class NoteActivity extends AppCompatActivity {
                     binding.btnLock.setImageTintList(ColorStateList.valueOf(Color.parseColor("#FF6E40")));
                     binding.layoutPassword.setVisibility(View.VISIBLE);
                     binding.etPassword.requestFocus();
+                    binding.etPassword.addTextChangedListener(new TextWatcher() {
+                        @Override
+                        public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+                        }
+
+                        @Override
+                        public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+                            if (binding.etPassword.getText().toString().length()==4){
+                                if (password.equals(binding.etPassword.getText().toString())){
+                                    binding.layoutPassword.setVisibility(View.GONE);
+                                        InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                                        imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+                                }else{
+
+                                }
+                            }
+                        }
+
+                        @Override
+                        public void afterTextChanged(Editable editable) {
+
+                        }
+                    });
+                    binding.btnLock.setOnClickListener(view -> {showLock();});
                 }
             }
         }

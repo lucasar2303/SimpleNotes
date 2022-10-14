@@ -9,45 +9,43 @@
     android:orientation="vertical">
 
 
-    <EditText
-        android:id="@+id/etPassword"
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btnDelete"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="40dp"
-        android:layout_marginTop="50dp"
-        android:ems="10"
-        android:maxLength="4"
-        android:fontFamily="@font/inder"
-        android:hint="Digite sua senha"
-        android:inputType="numberPassword"
+        android:layout_marginTop="30dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/blackBg"
-        android:textAlignment="center"
-        android:textColor="@color/white"
-        android:textColorHint="@color/grayText"
-        android:textSize="28dp"
+        android:paddingHorizontal="50dp"
+        android:text="Remover senha"
+        android:textSize="18dp"
+        android:textColor="@color/orange"
+        app:layout_constraintBottom_toTopOf="@+id/guideline7"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <Button
-        android:id="@+id/btnSave"
-        android:layout_width="0dp"
+        android:id="@+id/btnEdit"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="30dp"
         android:background="@color/blackBg"
-        android:fontFamily="@font/inder"
-        android:text="Salvar"
+        android:paddingHorizontal="50dp"
+        android:text="Alterar Senha"
+        android:textSize="18dp"
         android:textColor="@color/orange"
-        android:textSize="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etPassword" />
+        app:layout_constraintTop_toTopOf="@+id/guideline7" />
 
-
-
-
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
