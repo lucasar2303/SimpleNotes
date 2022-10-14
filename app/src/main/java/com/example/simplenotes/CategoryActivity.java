@@ -154,7 +154,7 @@ public class CategoryActivity extends AppCompatActivity {
         intent.putExtra("categorySelect", category);
         intent.putExtra("categoryId", categoryId);
         startActivity(intent);
-        finish();
+
     }
 
 }

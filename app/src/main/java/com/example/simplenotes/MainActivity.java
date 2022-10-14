@@ -89,7 +89,11 @@ public class MainActivity extends AppCompatActivity {
         binding.btnFilter.setOnClickListener(view -> showDialogFilter());
         binding.btnSearch.setOnClickListener(view -> newActivty(SearchActivity.class));
         binding.btnAdd.setOnClickListener(view -> newActivty(AddActivity.class));
-        binding.btnCategory.setOnClickListener(view -> newActivty(CategoryActivity.class));
+        binding.btnCategory.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+        });
     }
 
     @Override
@@ -198,7 +202,9 @@ public class MainActivity extends AppCompatActivity {
                 binding.btnDelete.setOnClickListener(view -> deleteCategory());
 
                 binding.btnCategory.setOnClickListener(view -> {
-                    newActivty(CategoryActivity.class);
+                    Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
                     finish();
                 });
 
