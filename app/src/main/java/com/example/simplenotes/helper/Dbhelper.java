@@ -29,9 +29,9 @@ public class Dbhelper extends SQLiteOpenHelper {
             db.execSQL(sqlNotes);
             db.execSQL(sqlCategory);
 
-            Log.i("INFO DB", "BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB");
+            Log.i("INFO DB", "Sucesso");
         }catch (Exception e){
-            Log.i("INFO DB", "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA" + e.getMessage());
+            Log.i("INFO DB", "Erro" + e.getMessage());
         }
     }
 
