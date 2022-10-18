@@ -21,6 +21,7 @@ public class AddActivity extends AppCompatActivity {
 
     private ActivityAddBinding binding;
     private int fontsize = 22;
+    private String category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,11 @@ public class AddActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = ActivityAddBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+
+        if (getIntent().getSerializableExtra("category")!=null){
+            category = (String) getIntent().getSerializableExtra("category");
+        }
+
 
         binding.btnBack.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), MainActivity.class);
@@ -52,6 +58,14 @@ public class AddActivity extends AppCompatActivity {
         note.setFont(fontsize);
         note.setDatecreate(dateString);
         note.setDatemodify(dateString);
+
+
+
+
+        if (!category.equals("")){
+            note.setCategory(category);
+            Toast.makeText(this, category, Toast.LENGTH_SHORT).show();
+        }
 
         noteDAO.save(note);
 

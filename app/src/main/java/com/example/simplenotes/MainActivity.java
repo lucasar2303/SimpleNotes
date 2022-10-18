@@ -97,7 +97,11 @@ public class MainActivity extends AppCompatActivity {
 
         binding.btnFilter.setOnClickListener(view -> showDialogFilter());
         binding.btnSearch.setOnClickListener(view -> newActivty(SearchActivity.class));
-        binding.btnAdd.setOnClickListener(view -> newActivty(AddActivity.class));
+        binding.btnAdd.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(), AddActivity.class);
+            intent.putExtra("category", categorySelec);
+            startActivity(intent);
+        });
         binding.btnCategory.setOnClickListener(view -> {
             Intent intent = new Intent(getApplicationContext(), CategoryActivity.class);
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);

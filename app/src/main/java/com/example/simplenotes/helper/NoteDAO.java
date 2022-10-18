@@ -31,6 +31,7 @@ public class NoteDAO implements INoteDAO{
         cv.put("text", note.getText());
         cv.put("datecreate", note.getDatecreate());
         cv.put("datemodify", note.getDatemodify());
+        cv.put("category", note.getCategory());
         cv.put("font", note.getFont());
         try {
 

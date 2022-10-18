@@ -74,7 +74,7 @@ public class CategoryActivity extends AppCompatActivity {
                 )
         );
 
-        binding.tvAll.setOnClickListener(view -> selectCategory("",0));
+        binding.tvAll.setOnClickListener(view -> finish());
 
         binding.btnAdd.setOnClickListener(view -> showDialogFilter());
 
