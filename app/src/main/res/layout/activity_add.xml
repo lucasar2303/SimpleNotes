@@ -75,7 +75,7 @@
         android:fontFamily="@font/inder"
         android:gravity="start|top"
         android:hint="Digite suas anotações"
-        android:inputType="textMultiLine"
+        android:inputType="textMultiLine|textNoSuggestions"
         android:textColor="@color/white"
         android:textColorHint="@color/grayText"
         android:textSize="22sp"
